@@ -7,12 +7,14 @@ class Database:
         self.database.cursor().execute("""CREATE TABLE IF NOT EXISTS Results(Unit VARCHAR(3) PRIMARY KEY, Medium 
         Varchar(10), Mark INTEGER)""")
 
-    def get_connection(self):
-        return self.database
+    def add_results(self, unit, medium, mark):
+        self.database.execute("""INSERT INTO Results(Unit, Medium, Mark) VALUES(?, ?, ?)""",
+                                      (unit, medium, mark))
+        self.database.commit()
+        self.database.close()
 
-
-def add_results():
-    print("add results")
+    def close(self):
+        self.database.close()
 
 
 def view_results():
@@ -25,11 +27,15 @@ def clear_results():
 
 def main():
     """Main loop"""
+    data = Database()
     print("<<Select option:\n[1]Add results\n[2]View Results\n[3]Clear Results>>")
     choice = int(input(">>"))
     match choice:
         case 1:
-            add_results()
+            unit = input()
+            medium = input()
+            mark = input()
+            data.add_results(unit, medium, mark)
         case 2:
             view_results()
         case 3:
