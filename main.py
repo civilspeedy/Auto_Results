@@ -28,15 +28,45 @@ def clear_results():
 def main():
     """Main loop"""
     data = Database()
-    print("<<Select option:\n[1]Add results\n[2]View Results\n[3]Clear Results>>")
+    print("<<Select option: [1]Add results [2]View Results [3]Clear Results>>")
     choice = int(input(">>"))
     match choice:
 
         case 1:
-
-
-
             entries = {1: "unit code", 2: "medium of assessment", 3: "mark"}
+            second_loop = True
+            unit = ""
+            medium = ""
+            mark = ""
+
+            for entry in entries:
+                first_loop = True
+                second_loop = True
+
+                while first_loop:
+                    choice = input(f"<<Enter {entries[entry]}>>\n>>")
+
+                    while second_loop:
+                        yes_or_no = input(f"<<{entries[entry]} is {choice}. Is that correct?[y]/[n]>>\n>>").lower()
+
+                        if yes_or_no == "y":
+                            match entry:
+                                case 1:
+                                    unit = choice
+                                case 2:
+                                    medium = choice
+                                case 3:
+                                    mark = choice
+
+                            first_loop = False
+                            second_loop = False
+
+                        if yes_or_no == "n":
+                            second_loop = False
+
+                        if yes_or_no != "y" and yes_or_no != "n":
+                            print("<<Invalid input. Please try again.>>")
+            print(unit, medium, mark)
 
         case 2:
             view_results()
