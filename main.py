@@ -33,22 +33,10 @@ def main():
     match choice:
 
         case 1:
-            entries = {1: "unit code", 2: ""} # make dict for a loop so don't have to repeat
-            while True:
-                unit = input("<<Enter the unit code>>\n>>")
-                response = input(f"<<Unit is '{unit}'>>\n<<Is that correct? [y]/[n]>>\n>>")
-                if response.lower() == "y":
-                    break
-            while True:
-                medium = input("<<Enter the medium of the assessment>>\n>>")
-                response = input(f"<<The medium is '{medium}'>>\n<<Is that correct? [y]/[n]>>\n>>")
-                if response.lower() == "y":
-                    break
-            while True:
-                medium = input("<<Enter the medium of the assessment>>\n>>")
-                response = input(f"<<The medium is '{medium}'>>\n<<Is that correct? [y]/[n]>>\n>>")
-                if response.lower() == "y":
-                    break
+
+
+
+            entries = {1: "unit code", 2: "medium of assessment", 3: "mark"}
 
         case 2:
             view_results()
