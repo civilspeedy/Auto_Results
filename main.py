@@ -9,7 +9,7 @@ class Database:
 
     def add_results(self, unit, medium, mark):
         self.database.execute("""INSERT INTO Results(Unit, Medium, Mark) VALUES(?, ?, ?)""",
-                                      (unit, medium, mark))
+                              (unit, medium, mark))
         self.database.commit()
         self.database.close()
 
@@ -32,10 +32,11 @@ def main():
     choice = int(input(">>"))
     match choice:
         case 1:
-            unit = input()
-            medium = input()
-            mark = input()
-            data.add_results(unit, medium, mark)
+            while True:
+                unit = input("<<<Enter the unit code>>\n>>")
+                response = input(f"<<Unit is '{unit}'>>\n<<Is that correct? [y]/[n]>>\n>>")  # confirming user choice
+                if response.lower() == "y":
+                    break
         case 2:
             view_results()
         case 3:
