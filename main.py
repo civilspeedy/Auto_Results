@@ -12,22 +12,17 @@ class Database:
                               (unit, medium, mark))
         self.database.commit()
         self.database.close()
+        return True
 
-    def close(self):
-        self.database.close()
+    def view_results(self):
+        print("view results")
 
-
-def view_results():
-    print("view results")
-
-
-def clear_results():
-    print("clear results")
+    def clear_results(self):
+        print("clear results")
 
 
 def main():
     """Main loop"""
-    data = Database()
     print("<<Select option: [1]Add results [2]View Results [3]Clear Results>>")
     choice = int(input(">>"))
     match choice:
@@ -66,12 +61,24 @@ def main():
 
                         if yes_or_no != "y" and yes_or_no != "n":
                             print("<<Invalid input. Please try again.>>")
+
             print(unit, medium, mark)
+            print("<<Now adding to Database>>")
+
+            data = Database()
+
+            if data.add_results(unit, medium, mark):
+                print("<<Results successfully added to Database>>")
+
+            else:
+                print("<<Something went wrong>>")
 
         case 2:
-            view_results()
+            data = Database()
+            data.view_results()
         case 3:
-            clear_results()
+            data = Database()
+            data.clear_results()
         case other:
             print("<<INVALID INPUT>>")
 
